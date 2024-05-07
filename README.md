@@ -1,4 +1,4 @@
-# Task Watcher 👀
+# Task Watcher App Building with Next.js 👀
 
 ## Getting Started
 
