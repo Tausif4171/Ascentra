@@ -1,7 +1,9 @@
+import TicketCard from "./(components)/TicketCard";
+
 export default function Home() {
   return (
-    <div className=" text-center">
-      <h1>Task Watcher 👀</h1>
+    <div>
+      <TicketCard />
     </div>
   );
 }
