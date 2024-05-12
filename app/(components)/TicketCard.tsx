@@ -6,7 +6,7 @@ import StatusDisplay from "./StatusDisplay";
 
 function TicketCard() {
   return (
-    <div className=" w-[450px] bg-white rounded-xl h-auto p-4 hover:bg-slate-50 cursor-pointer">
+    <div className=" bg-white rounded-xl h-auto p-4 hover:bg-slate-50 cursor-pointer">
       <div className="flex justify-between">
         <PriorityDisplay />
         <DeleteBlock />
