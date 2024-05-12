@@ -2,7 +2,7 @@ import TicketCard from "./(components)/TicketCard";
 
 export default function Home() {
   return (
-    <div>
+    <div className=" m-10">
       <TicketCard />
     </div>
   );
