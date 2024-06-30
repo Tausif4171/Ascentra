@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation';
 
 export const TaskForm = () => {
+	const router = useRouter()
 	const [formData, setFormData] = useState({
 		title: '',
 		description: '',
@@ -31,7 +32,9 @@ export const TaskForm = () => {
 				"content-type": "application/json"
 			}
 		})
-		if (res.ok) {
+		if (res) {
+			router.refresh()
+			router.push('/')
 			return 'Successfully created!'
 		}
 		else {
