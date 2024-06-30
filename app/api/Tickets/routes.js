@@ -7,11 +7,10 @@ async function CreateTask( req ) {
 		const data = body.formData
 		const res = await Task.create( data )
 		if ( res.ok ) {
-			return NextResponse.json({message: 'Task Created Successfully!', status:201})
-		}
-		else {
-			return NextResponse.json({message:'Failed to create', status:500})
+			return NextResponse.json( {message: 'Task Created Successfully!'}, {status: 201} )
 		}
 	}
-
+	catch ( error ) {
+		return NextResponse.json( {message: 'Failed to create', error}, {status: 500} )
+	}
 }
