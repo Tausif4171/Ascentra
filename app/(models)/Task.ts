@@ -12,7 +12,7 @@ const taskSchema = new Schema(
     progress: Number,
     priority: Number,
     category: String,
-    active: Boolean,
+    // active: Boolean,
   },
   {
     timestamps: true,

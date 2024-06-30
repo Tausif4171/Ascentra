@@ -1,12 +1,13 @@
 import {NextResponse} from 'next/server';
 import Task from '../../(models)/Task'
 
-async function CreateTask( req ) {
+export async function POST(req) {
+	console.log('test')
 	try {
 		const body = await req.json()
 		const data = body.formData
-		const res = await Task.create( data )
-		if ( res.ok ) {
+		const res = await Task.create(data)
+		if (res) {
 			return NextResponse.json( {message: 'Task Created Successfully!'}, {status: 201} )
 		}
 	}
