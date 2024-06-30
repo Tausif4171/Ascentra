@@ -14,6 +14,8 @@ export const TaskForm = () => {
 		// active: Boolean,
 	});
 
+	console.log({formData})
+
 	const handleChange = (e: any) => {
 		const name = e.target.name;
 		const value = e.target.value;
@@ -70,7 +72,7 @@ export const TaskForm = () => {
 					<input type='radio' name='priority' value={1} checked={formData.priority==1} onChange={handleChange} />
 					<label>1</label>
 
-					<input type='radio' name='priority' value={2} checked={formData.priority==2} onChange={handleChange} />
+					<input type='radio' name='priority' value={'2'} checked={formData.priority==2} onChange={handleChange} />
 					<label>2</label>
 
 					<input type='radio' name='priority' value={3} checked={formData.priority==3} onChange={handleChange} />
