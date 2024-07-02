@@ -1,9 +1,9 @@
 import React from "react";
 
-function StatusDisplay() {
+function StatusDisplay({status}:any) {
   return (
     <div className=" p-2 bg-yellow flex text-center rounded-xl">
-      <p>Done</p>
+      <p>{status}</p>
     </div>
   );
 }

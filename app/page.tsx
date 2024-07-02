@@ -1,4 +1,5 @@
 import TicketCard from "./(components)/TicketCard";
+import TaskSchema from "./interface/Task";
 
 const getTask = async () => {
   try {
@@ -18,12 +19,19 @@ export default async function Home() {
   console.log({ task });
 
   return (
-    <div className=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  m-10">
-      <TicketCard />
-      <TicketCard />
-      <TicketCard />
-      <TicketCard />
-      <TicketCard />
+    <div>
+      <h3>Software</h3>
+
+      <div className=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  m-10">
+        {task.filter((data: TaskSchema) => data.category === 'Software').map((item: TaskSchema, index: number) => <TicketCard item={item} index={index} />)}
+      </div>
+
+      <h3>Hardware</h3>
+
+      <div className=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  m-10">
+        {task.filter((data: TaskSchema) => data.category === 'Hardware').map((item: TaskSchema, index: number) => <TicketCard item={item} index={index} />)}
+      </div>
     </div>
+
   );
 }
