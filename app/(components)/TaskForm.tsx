@@ -7,7 +7,7 @@ export const TaskForm = () => {
 	const [formData, setFormData] = useState({
 		title: '',
 		description: '',
-		status: 'not started',
+		status: 'Todo',
 		progress: 0,
 		priority: 1,
 		category: 'Software',
