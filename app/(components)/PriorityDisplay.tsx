@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Icons from "../assets/svgs";
 
 
-function PriorityDisplay(priority : any) {
+function PriorityDisplay({priority} : any) {
   const { FireIcon, DarkFireIcon } = Icons;
   const icons:any = [];
 
