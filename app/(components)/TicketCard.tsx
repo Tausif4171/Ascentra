@@ -9,7 +9,7 @@ function TicketCard({ item, index }: any) {
   return (
     <div className=" bg-white rounded-xl h-auto p-4 hover:bg-slate-50 cursor-pointer">
       <div className="flex justify-between">
-        <PriorityDisplay />
+        <PriorityDisplay priority={item.priority} />
         <DeleteBlock />
       </div>
       <h2 className="mt-2">{item.title}</h2>
