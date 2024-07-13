@@ -19,5 +19,7 @@ const taskSchema = new Schema(
   }
 );
 
-const Task = mongoose.model("Task", taskSchema);
+// Check if the model is already defined to prevent OverwriteModelError
+const Task = mongoose.models.Task || mongoose.model("Task", taskSchema);
+
 export default Task;
