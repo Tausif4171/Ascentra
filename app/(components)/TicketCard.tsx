@@ -5,30 +5,28 @@ import ProgressDisplay from "./ProgressDisplay";
 import StatusDisplay from "./StatusDisplay";
 
 function TicketCard({ item, index }: any) {
-  console.log('check', item)
+  console.log("check", item);
 
-  function format( timestamp : any) {
+  function format(timestamp: any) {
     const options: any = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
-    }
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
 
-    const date = new Date(timestamp)
-    const formatDateTime = date.toLocaleString('en-US', options)
-    return formatDateTime
-
+    const date = new Date(timestamp);
+    const formatDateTime = date.toLocaleString("en-US", options);
+    return formatDateTime;
   }
 
   return (
     <div className=" bg-white rounded-xl h-auto p-4 hover:bg-slate-50 cursor-pointer">
-
       <div className="flex justify-between">
         <PriorityDisplay priority={item.priority} />
-        <DeleteBlock />
+        <DeleteBlock id={item._id} />
       </div>
 
       <h2 className="mt-2">{item.title}</h2>
@@ -43,7 +41,6 @@ function TicketCard({ item, index }: any) {
         className="flex justify-between w-full mt-2"
         style={{ alignItems: "center" }}
       >
-
         <div className="w-64">
           <ProgressDisplay progress={item.progress} />
         </div>
@@ -51,9 +48,7 @@ function TicketCard({ item, index }: any) {
         <div className="">
           <StatusDisplay status={item.status} />
         </div>
-
       </div>
-
     </div>
   );
 }
