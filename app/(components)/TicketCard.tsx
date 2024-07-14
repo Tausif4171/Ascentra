@@ -3,6 +3,7 @@ import PriorityDisplay from "./PriorityDisplay";
 import DeleteBlock from "./DeleteBlock";
 import ProgressDisplay from "./ProgressDisplay";
 import StatusDisplay from "./StatusDisplay";
+import Link from "next/link";
 
 function TicketCard({ item, index }: any) {
   console.log("check", item);
@@ -29,26 +30,28 @@ function TicketCard({ item, index }: any) {
         <DeleteBlock id={item._id} />
       </div>
 
-      <h2 className="mt-2">{item.title}</h2>
+      <Link href={`/TicketPage/${item._id}`}>
+        <h2 className="mt-2">{item.title}</h2>
 
-      <hr className=" h-px text-sky-300 w-full"></hr>
+        <hr className=" h-px text-sky-300 w-full"></hr>
 
-      <p className="mt-2">{item.description}</p>
+        <p className="mt-2">{item.description}</p>
 
-      <p className="mt-2">{format(item.createdAt)}</p>
+        <p className="mt-2">{format(item.createdAt)}</p>
 
-      <div
-        className="flex justify-between w-full mt-2"
-        style={{ alignItems: "center" }}
-      >
-        <div className="w-64">
-          <ProgressDisplay progress={item.progress} />
+        <div
+          className="flex justify-between w-full mt-2"
+          style={{ alignItems: "center" }}
+        >
+          <div className="w-64">
+            <ProgressDisplay progress={item.progress} />
+          </div>
+
+          <div className="">
+            <StatusDisplay status={item.status} />
+          </div>
         </div>
-
-        <div className="">
-          <StatusDisplay status={item.status} />
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }
