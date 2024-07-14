@@ -25,3 +25,20 @@ export async function GET(req, { params }) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
+
+export async function PUT(req, { params }) {
+  try {
+    const { id } = params;
+    const data = await req.json();
+    const taskData = data.formData;
+    const res = await Task.findByIdAndUpdate(id, { ...taskData });
+    if (res.ok) {
+      return NextResponse.json(
+        { message: "Update data successfully!" },
+        { status: 200 }
+      );
+    }
+  } catch (error) {
+    return NextResponse.json({ message: error.message }, { status: 500 });
+  }
+}

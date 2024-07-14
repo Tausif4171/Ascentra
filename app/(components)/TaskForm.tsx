@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   data?: any;
-  editMode?: string;
+  editMode?: boolean;
 };
 
 export const TaskForm = ({ data, editMode }: Props) => {
@@ -62,11 +62,33 @@ export const TaskForm = ({ data, editMode }: Props) => {
     }
   };
 
+  const updateTask = async (e: any) => {
+    e.preventDefault();
+    const res = await fetch(`/api/Task/${data._id}`, {
+      method: "PUT",
+      body: JSON.stringify({ formData }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res) {
+      router.refresh();
+      router.push("/");
+      return "Successfully updated!";
+    } else {
+      return "Error in updating";
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center">
       <h2>{editMode ? "Update your Task" : "Create your Task"}</h2>
 
-      <form className="flex flex-col" method="POST" onSubmit={createTask}>
+      <form
+        className="flex flex-col"
+        method="POST"
+        onSubmit={editMode ? updateTask : createTask}
+      >
         <label>Title</label>
         <input
           name="title"
@@ -164,7 +186,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <option value={"Done"}>Done</option>
         </select>
 
-        <button type="submit">Create</button>
+        <button type="submit">{editMode ? "Update" : "Create"}</button>
       </form>
     </div>
   );
