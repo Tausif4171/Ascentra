@@ -1,10 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export const TaskForm = () => {
+type Props = {
+  data?: any;
+  editMode?: string;
+};
+
+export const TaskForm = ({ data, editMode }: Props) => {
+  console.log(data);
   const router = useRouter();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     title: "",
     description: "",
     status: "Todo",
@@ -16,10 +22,23 @@ export const TaskForm = () => {
 
   console.log({ formData });
 
+  useEffect(() => {
+    if (editMode) {
+      setFormData({
+        title: data.title,
+        description: data.description,
+        status: data.status,
+        progress: data.progress,
+        priority: data.priority,
+        category: data.category,
+      });
+    }
+  }, [editMode]);
+
   const handleChange = (e: any) => {
     const name = e.target.name;
     const value = e.target.value;
-    setFormData((prevState) => ({
+    setFormData((prevState: any) => ({
       ...prevState,
       [name]: value,
     }));
@@ -45,7 +64,7 @@ export const TaskForm = () => {
 
   return (
     <div className="flex flex-col justify-center">
-      <h2>Create your Task</h2>
+      <h2>{editMode ? "Update your Task" : "Create your Task"}</h2>
 
       <form className="flex flex-col" method="POST" onSubmit={createTask}>
         <label>Title</label>
