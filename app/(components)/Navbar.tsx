@@ -12,7 +12,7 @@ function Navbar() {
             <HomeIcon />
           </div>
         </Link>
-        <Link href="/TicketPage/123">
+        <Link href="/TicketPage/new">
           <div className="icon">
             <TaskIcon />
           </div>
