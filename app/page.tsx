@@ -3,7 +3,7 @@ import TaskSchema from "./interface/Task";
 
 const getTask = async () => {
   try {
-    const res = await fetch("http://task-watcher.vercel.app/api/Task", {
+    const res = await fetch("https://task-watcher.vercel.app/api/Task", {
       cache: "no-store",
     });
     const data = await res.json();
