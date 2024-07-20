@@ -23,6 +23,7 @@ function Login() {
 
         <button>Login</button>
       </form>
+
       <h6 className=" font-normal">
         Don’t have an account? <Link href="/auth/SignUp">Sign up</Link>
       </h6>

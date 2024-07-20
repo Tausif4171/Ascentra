@@ -23,6 +23,7 @@ function SingUp() {
 
         <button>Login</button>
       </form>
+
       <h6 className=" font-normal">
         Already signed up? <Link href="/auth/Login">Go to login</Link>
       </h6>
