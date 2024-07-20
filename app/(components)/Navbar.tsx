@@ -18,9 +18,13 @@ function Navbar() {
           </div>
         </Link>
       </div>
-      <div>
+      {/* <div>
         <LogoutIcon />
-      </div>
+      </div> */}
+
+      <Link href={"/auth/Login"}>
+        <h4>Login</h4>
+      </Link>
     </div>
   );
 }
