@@ -5,7 +5,7 @@ import ProgressDisplay from "./ProgressDisplay";
 import StatusDisplay from "./StatusDisplay";
 import Link from "next/link";
 
-function TicketCard({ item, index }: any) {
+function TicketCard({ item, key }: any) {
   console.log("check", item);
 
   function format(timestamp: any) {

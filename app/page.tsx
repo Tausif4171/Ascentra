@@ -26,7 +26,7 @@ export default async function Home() {
         {task
           ?.filter((data: TaskSchema) => data.category === "Software")
           .map((item: TaskSchema, index: number) => (
-            <TicketCard item={item} index={index} />
+            <TicketCard item={item} key={index} />
           ))}
       </div>
 
@@ -36,7 +36,7 @@ export default async function Home() {
         {task
           ?.filter((data: TaskSchema) => data.category === "Hardware")
           .map((item: TaskSchema, index: number) => (
-            <TicketCard item={item} index={index} />
+            <TicketCard item={item} key={index} />
           ))}
       </div>
     </div>
