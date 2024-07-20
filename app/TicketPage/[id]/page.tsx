@@ -2,7 +2,7 @@ import { TaskForm } from "@/app/(components)/TaskForm";
 import React from "react";
 
 const getDataBasedOnId = async (id: number) => {
-  const res = await fetch(`http://localhost:3000/api/Task/${id}`, {
+  const res = await fetch(`https://task-watcher.vercel.app/api/Task/${id}`, {
     cache: "no-store",
   });
   console.log({ res });
