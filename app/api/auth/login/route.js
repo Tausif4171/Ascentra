@@ -12,7 +12,7 @@ export async function POST(req) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    const isMatch = password === user.password;
+    const isMatch = password == user.password;
     if (!isMatch) {
       return NextResponse.json(
         { message: "Invalid credentials" },
