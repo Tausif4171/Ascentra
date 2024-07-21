@@ -3,9 +3,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 function Login() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  console.log(name, email);
+  const [password, setPassword] = useState("");
 
   function Login(e: any) {
     e.preventDefault();
@@ -15,11 +14,11 @@ function Login() {
   return (
     <div className="flex flex-col justify-center items-center">
       <form className="flex flex-col" onSubmit={Login}>
-        <label>Name</label>
-        <input value={name} onChange={(e) => setName(e.target.value)} />
-
         <label>Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} />
+
+        <label>Password</label>
+        <input value={password} onChange={(e) => setPassword(e.target.value)} />
 
         <button>Login</button>
       </form>
