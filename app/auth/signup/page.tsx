@@ -1,19 +1,30 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 function SingUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let router = useRouter();
 
-  function SingUp(e: any) {
+  async function handleSingUp(e: any) {
     e.preventDefault();
-    console.log("form submit");
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (res.ok) {
+      router.push("/auth/Login");
+    } else {
+      alert("failed to signup");
+    }
   }
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <form className="flex flex-col" onSubmit={SingUp}>
+      <form className="flex flex-col" onSubmit={handleSingUp}>
         <label>Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} />
 
