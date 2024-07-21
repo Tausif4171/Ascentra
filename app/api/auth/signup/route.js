@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import User from "../../(models)/User";
-import { connectToDatabase } from "../../lib/mongoose";
+import User from "../../../(models)/User";
+import { connectToDatabase } from "../../../lib/mongoose";
 
 export async function POST(req) {
   await connectToDatabase();

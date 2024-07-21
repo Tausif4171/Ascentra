@@ -10,7 +10,7 @@ function SingUp() {
 
   async function handleSingUp(e: any) {
     e.preventDefault();
-    const res = await fetch("/api/auth", {
+    const res = await fetch("/api/auth/signup", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ function SingUp() {
         <label>Password</label>
         <input value={password} onChange={(e) => setPassword(e.target.value)} />
 
-        <button>Login</button>
+        <button>SignUp</button>
       </form>
 
       <h6 className=" font-normal">

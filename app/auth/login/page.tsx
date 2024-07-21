@@ -1,19 +1,30 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  function Login(e: any) {
+  async function handleLogin(e: any) {
     e.preventDefault();
-    console.log("form submit");
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (res) {
+      router.push("/auth/SignUp");
+    } else {
+      alert("Invalid Credentials");
+    }
   }
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <form className="flex flex-col" onSubmit={Login}>
+      <form className="flex flex-col" onSubmit={handleLogin}>
         <label>Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} />
 
