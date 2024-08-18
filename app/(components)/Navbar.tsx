@@ -23,7 +23,7 @@ function Navbar() {
       </div> */}
 
       <Link href={"/auth/Login"}>
-        <h4>Login</h4>
+        <h4 className=" font-medium">Log in</h4>
       </Link>
     </div>
   );

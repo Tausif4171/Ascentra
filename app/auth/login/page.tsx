@@ -23,20 +23,45 @@ function Login() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <form className="flex flex-col" onSubmit={handleLogin}>
-        <label>Email</label>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} />
+    <div className="flex flex-col items-center mt-10">
+      <div className="w-[100%] sm:w-[400px]">
+        <div className="flex items-start mb-10">
+          <h2 className="text-white text-[28px]">Log in</h2>
+        </div>
 
-        <label>Password</label>
-        <input value={password} onChange={(e) => setPassword(e.target.value)} />
+        <form className="flex flex-col mb-4" onSubmit={handleLogin}>
+          <div className="flex flex-col border border-[#eee] rounded-lg mb-4 px-2 py-1">
+            <label className=" text-white text-[14px]">Email</label>
+            <input
+              className=" text-white placeholder:text-white text-4 pt-2 border-none outline-none bg-transparent"
+              placeholder="Enter your email..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-        <button>Login</button>
-      </form>
+          <div className="flex flex-col border border-[#eee] rounded-lg mb-4 px-2 py-1">
+            <label className=" text-white text-[14px]">Password</label>
+            <input
+              className=" text-white placeholder:text-white text-4 pt-2 border-none outline-none bg-transparent"
+              placeholder="Enter your password..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-      <h6 className=" font-normal">
-        Don’t have an account? <Link href="/auth/SignUp">Sign up</Link>
-      </h6>
+          <button className=" bg-black rounded-md flex justify-center items-center py-3 text-white font-bold">
+            Login
+          </button>
+        </form>
+
+        <h6 className=" text-white text-[14px] font-normal">
+          Don’t have an account?{" "}
+          <Link href="/auth/SignUp">
+            <span className=" underline underline-offset-1">Sign up</span>
+          </Link>
+        </h6>
+      </div>
     </div>
   );
 }
