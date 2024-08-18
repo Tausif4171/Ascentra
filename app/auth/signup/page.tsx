@@ -16,7 +16,7 @@ function SingUp() {
       headers: { "Content-Type": "application/json" },
     });
     if (res.ok) {
-      router.push("/auth/Login");
+      router.push("/");
     } else {
       alert("failed to signup");
     }
@@ -36,6 +36,7 @@ function SingUp() {
               placeholder="Enter your email..."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
@@ -46,6 +47,7 @@ function SingUp() {
               placeholder="Enter your password..."
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 

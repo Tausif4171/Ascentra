@@ -16,7 +16,7 @@ function Login() {
       headers: { "Content-Type": "application/json" },
     });
     if (res) {
-      router.push("/auth/SignUp");
+      router.push("/");
     } else {
       alert("Invalid Credentials");
     }
@@ -37,6 +37,7 @@ function Login() {
               placeholder="Enter your email..."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
@@ -47,6 +48,7 @@ function Login() {
               placeholder="Enter your password..."
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 
