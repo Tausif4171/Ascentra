@@ -23,20 +23,44 @@ function SingUp() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <form className="flex flex-col" onSubmit={handleSingUp}>
-        <label>Email</label>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} />
+    <div className="flex flex-col items-center mt-10">
+      <div className="w-[100%] sm:w-[400px]">
+        <div className="flex items-start mb-10">
+          <h2 className="text-white text-[32px]">Sign up</h2>
+        </div>
+        <form className="flex flex-col mb-4" onSubmit={handleSingUp}>
+          <div className="flex flex-col border border-[#eee] rounded-lg mb-4 px-2 py-1">
+            <label className=" text-white text-[14px]">Email</label>
+            <input
+              className=" text-white placeholder:text-white text-4 pt-2 border-none outline-none bg-transparent"
+              placeholder="Enter your email..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-        <label>Password</label>
-        <input value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className="flex flex-col border border-[#eee] rounded-lg mb-4 px-2 py-1">
+            <label className=" text-white text-[14px]">Password</label>
+            <input
+              className=" text-white placeholder:text-white text-4 pt-2 border-none outline-none bg-transparent"
+              placeholder="Enter your password..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-        <button>SignUp</button>
-      </form>
+          <button className=" bg-black rounded-md flex justify-center items-center py-3 text-white font-bold">
+            Sign up
+          </button>
+        </form>
 
-      <h6 className=" font-normal">
-        Already signed up? <Link href="/auth/Login">Go to login</Link>
-      </h6>
+        <h6 className=" text-white text-[14px] font-normal">
+          Already signed up?{" "}
+          <Link href="/auth/Login">
+            <span className=" underline underline-offset-1">Go to login</span>
+          </Link>
+        </h6>
+      </div>
     </div>
   );
 }

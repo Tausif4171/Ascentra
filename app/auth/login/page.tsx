@@ -26,7 +26,7 @@ function Login() {
     <div className="flex flex-col items-center mt-10">
       <div className="w-[100%] sm:w-[400px]">
         <div className="flex items-start mb-10">
-          <h2 className="text-white text-[28px]">Log in</h2>
+          <h2 className="text-white text-[32px]">Log in</h2>
         </div>
 
         <form className="flex flex-col mb-4" onSubmit={handleLogin}>
@@ -51,7 +51,7 @@ function Login() {
           </div>
 
           <button className=" bg-black rounded-md flex justify-center items-center py-3 text-white font-bold">
-            Login
+            Log in
           </button>
         </form>
 
