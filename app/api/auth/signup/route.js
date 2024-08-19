@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import User from "../../../(models)/User";
 import { connectToDatabase } from "../../../lib/mongoose";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export async function POST(req) {
   await connectToDatabase();
@@ -16,7 +18,10 @@ export async function POST(req) {
       );
     }
 
-    const user = new User({ email, password });
+    // Hash the password before saving it
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({ email, password: hashedPassword });
 
     await user.save();
 
