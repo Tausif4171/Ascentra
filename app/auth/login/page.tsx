@@ -15,7 +15,10 @@ function Login() {
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
-    if (res) {
+
+    const data = await res.json();
+    if (data.token) {
+      localStorage.setItem("token", data.token);
       router.push("/");
     } else {
       alert("Invalid Credentials");

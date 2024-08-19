@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import User from "../../../(models)/User";
 import { connectToDatabase } from "../../../lib/mongoose";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export async function POST(req) {
   await connectToDatabase();
@@ -12,7 +14,8 @@ export async function POST(req) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    const isMatch = password == user.password;
+    // Compare hashed password
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return NextResponse.json(
         { message: "Invalid credentials" },
@@ -20,8 +23,13 @@ export async function POST(req) {
       );
     }
 
+    // Generate JWT token
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
     return NextResponse.json(
-      { message: "User login successfully" },
+      { message: "User logged in successfully", token },
       { status: 200 }
     );
   } catch (error) {

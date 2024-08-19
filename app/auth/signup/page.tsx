@@ -15,6 +15,11 @@ function SingUp() {
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
+    const data = await res.json();
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+    }
+
     if (res.ok) {
       router.push("/");
     } else {
