@@ -1,9 +1,11 @@
+"use client";
+import { useEffect, useState } from "react";
 import TicketCard from "./(components)/TicketCard";
 import TaskSchema from "./interface/Task";
 
-const getTask = async () => {
+const fetchTasks = async () => {
   try {
-    const res = await fetch("https://task-watcher.vercel.app/api/Task", {
+    const res = await fetch("http://localhost:3000/api/Task", {
       cache: "no-store",
     });
     const data = await res.json();
@@ -14,28 +16,53 @@ const getTask = async () => {
   }
 };
 
-export default async function Home() {
-  const { task } = await getTask();
-  console.log({ task });
+export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [tasks, setTasks] = useState<TaskSchema[]>([]);
+
+  useEffect(() => {
+    const checkAuth = () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setIsLoggedIn(false);
+      } else {
+        setIsLoggedIn(true);
+      }
+    };
+
+    const loadTasks = async () => {
+      const data = await fetchTasks();
+      setTasks(data.task);
+    };
+
+    checkAuth();
+    if (isLoggedIn) {
+      loadTasks();
+    }
+  }, [isLoggedIn]);
+
+  if (!isLoggedIn) {
+    return <div>Please login to view tasks.</div>;
+  }
 
   return (
     <div>
       <h3>Software</h3>
 
-      <div className=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  m-10">
-        {task
-          ?.filter((data: TaskSchema) => data.category === "Software")
-          .map((item: TaskSchema, index: number) => (
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 m-10">
+        {tasks
+          ?.filter((data) => data.category === "Software")
+          .map((item, index) => (
             <TicketCard item={item} key={index} />
           ))}
       </div>
 
       <h3>Hardware</h3>
 
-      <div className=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  m-10">
-        {task
-          ?.filter((data: TaskSchema) => data.category === "Hardware")
-          .map((item: TaskSchema, index: number) => (
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 m-10">
+        {tasks
+          ?.filter((data) => data.category === "Hardware")
+          .map((item, index) => (
             <TicketCard item={item} key={index} />
           ))}
       </div>
