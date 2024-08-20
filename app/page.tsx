@@ -5,7 +5,7 @@ import TaskSchema from "./interface/Task";
 
 const fetchTasks = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/Task", {
+    const res = await fetch("/api/Task", {
       cache: "no-store",
     });
     const data = await res.json();
