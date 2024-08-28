@@ -81,24 +81,34 @@ export const TaskForm = ({ data, editMode }: Props) => {
   };
 
   return (
-    <div className="flex flex-col justify-center">
-      <h2>{editMode ? "Update your Task" : "Create your Task"}</h2>
+    <div className="flex flex-col justify-center m-10">
+      <h3 className="text-[#fff] font-semibold text-[24px] mb-4">
+        {editMode ? "Update Task" : "Create Task"}
+      </h3>
 
       <form
         className="flex flex-col"
         method="POST"
         onSubmit={editMode ? updateTask : createTask}
       >
-        <label>Title</label>
+        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+          Title
+        </label>
+
         <input
+          className=" rounded-lg p-2 mb-2"
           name="title"
           type="text"
           value={formData.title}
           onChange={handleChange}
         />
 
-        <label>Description</label>
+        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+          Description
+        </label>
+
         <textarea
+          className=" rounded-lg p-2 mb-2"
           typeof="textarea"
           rows={4}
           name="description"
@@ -106,8 +116,12 @@ export const TaskForm = ({ data, editMode }: Props) => {
           onChange={handleChange}
         />
 
-        <label>Progress</label>
+        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+          Progress
+        </label>
+
         <input
+          className=" rounded-lg p-2 mb-2"
           type="range"
           min={0}
           max={100}
@@ -116,8 +130,12 @@ export const TaskForm = ({ data, editMode }: Props) => {
           onChange={handleChange}
         />
 
-        <label>Category</label>
+        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+          Category
+        </label>
+
         <select
+          className=" rounded-lg p-2 mb-2"
           name="category"
           value={formData.category}
           onChange={handleChange}
@@ -127,8 +145,11 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <option value={"Hardware"}>Hardware</option>
         </select>
 
-        <label>Priority</label>
-        <div>
+        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+          Priority
+        </label>
+
+        <div className="mb-2">
           <input
             type="radio"
             name="priority"
@@ -175,8 +196,16 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <label>5</label>
         </div>
 
-        <label>status</label>
-        <select name="status" value={formData.status} onChange={handleChange}>
+        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+          Status
+        </label>
+
+        <select
+          className=" rounded-lg p-2 mb-7"
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+        >
           <option value={"Todo"}>Todo</option>
 
           <option value={"Inprogress"}>Inprogress</option>
@@ -186,7 +215,12 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <option value={"Done"}>Done</option>
         </select>
 
-        <button type="submit">{editMode ? "Update" : "Create"}</button>
+        <button
+          className=" uppercase text-[18px] w-40 mx-auto px-6 bg-black rounded-md flex justify-center items-center py-3 text-white font-bold"
+          type="submit"
+        >
+          {editMode ? "Update" : "Create"}
+        </button>
       </form>
     </div>
   );
