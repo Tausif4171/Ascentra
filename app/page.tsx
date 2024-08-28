@@ -46,10 +46,10 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <h3>Software</h3>
+    <div className="m-10">
+      <h3 className="text-[#fff] font-semibold text-[24px] mb-4">Software</h3>
 
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 m-10">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mb-8">
         {tasks
           ?.filter((data) => data.category === "Software")
           .map((item, index) => (
@@ -57,9 +57,9 @@ export default function Home() {
           ))}
       </div>
 
-      <h3>Hardware</h3>
+      <h3 className="text-[#fff] font-semibold text-[24px] mb-4">Hardware</h3>
 
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 m-10">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mb-8">
         {tasks
           ?.filter((data) => data.category === "Hardware")
           .map((item, index) => (
