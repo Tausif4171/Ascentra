@@ -91,7 +91,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
         method="POST"
         onSubmit={editMode ? updateTask : createTask}
       >
-        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
           Title
         </label>
 
@@ -103,7 +103,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           onChange={handleChange}
         />
 
-        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
           Description
         </label>
 
@@ -116,7 +116,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           onChange={handleChange}
         />
 
-        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
           Progress
         </label>
 
@@ -130,7 +130,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           onChange={handleChange}
         />
 
-        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
           Category
         </label>
 
@@ -145,7 +145,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <option value={"Hardware"}>Hardware</option>
         </select>
 
-        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
           Priority
         </label>
 
@@ -196,7 +196,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <label>5</label>
         </div>
 
-        <label className="text-[#fff] font-medium text-[20px] mb-[6px]">
+        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
           Status
         </label>
 
