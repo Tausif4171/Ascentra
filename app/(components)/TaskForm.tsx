@@ -8,7 +8,8 @@ type Props = {
 };
 
 export const TaskForm = ({ data, editMode }: Props) => {
-  console.log(data);
+  const [users, setUsers] = useState([]);
+  console.log(data, users);
   const router = useRouter();
   const [formData, setFormData] = useState<any>({
     title: "",
@@ -17,12 +18,20 @@ export const TaskForm = ({ data, editMode }: Props) => {
     progress: 0,
     priority: 1,
     category: "Software",
+    assignedTo: "",
     // active: Boolean,
   });
 
   console.log({ formData });
 
   useEffect(() => {
+    const fetchUsers = async () => {
+      const res = await fetch("/api/user");
+      const data = await res.json();
+      setUsers(data.users);
+    };
+
+    fetchUsers();
     if (editMode) {
       setFormData({
         title: data.title,
@@ -213,6 +222,20 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <option value={"InReviews"}>InReview</option>
 
           <option value={"Done"}>Done</option>
+        </select>
+
+        <select
+          value={formData.assignedTo}
+          onChange={(e) =>
+            setFormData({ ...formData, assignedTo: e.target.value })
+          }
+        >
+          <option value="">Assign to</option>
+          {users?.map((user: { _id: string; email: string }) => (
+            <option key={user._id} value={user._id}>
+              {user.email}
+            </option>
+          ))}
         </select>
 
         <button
