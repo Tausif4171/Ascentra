@@ -225,10 +225,9 @@ export const TaskForm = ({ data, editMode }: Props) => {
         </select>
 
         <select
+          name="assignedTo"
           value={formData.assignedTo}
-          onChange={(e) =>
-            setFormData({ ...formData, assignedTo: e.target.value })
-          }
+          onChange={handleChange}
         >
           <option value="">Assign to</option>
           {users?.map((user: { _id: string; email: string }) => (

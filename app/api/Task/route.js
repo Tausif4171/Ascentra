@@ -8,6 +8,7 @@ export async function POST(req) {
     await connectToDatabase();
     const body = await req.json();
     const data = body.formData;
+    // const res = await Task.create({ ...data, createdBy: req.user._id });
     const res = await Task.create(data);
     if (res) {
       return NextResponse.json(
@@ -16,9 +17,9 @@ export async function POST(req) {
       );
     }
   } catch (error) {
-    console.error("Error creating task:", error);
+    console.error("Error creating task:", error.message, error.stack);
     return NextResponse.json(
-      { message: "Failed to create", error },
+      { message: "Failed to create", error: error.message },
       { status: 500 }
     );
   }

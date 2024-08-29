@@ -8,6 +8,15 @@ const taskSchema = new Schema(
     progress: Number,
     priority: Number,
     category: String,
+    // createdBy: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "User",
+    //   required: true,
+    // },
+    assignedTo: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     // active: Boolean,
   },
   {
