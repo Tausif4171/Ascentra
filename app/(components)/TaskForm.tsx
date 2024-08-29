@@ -40,6 +40,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
         progress: data.progress,
         priority: data.priority,
         category: data.category,
+        assignedTo: data.assignedTo,
       });
     }
   }, [editMode]);
