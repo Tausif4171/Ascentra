@@ -1,16 +1,38 @@
 import { NextResponse } from "next/server";
 import Task from "../../(models)/Task";
 import { connectToDatabase } from "../../lib/mongoose";
+import jwt from "jsonwebtoken";
 
 export async function POST(req) {
   console.log("Handling POST request");
+
+  // Extract the token from the Authorization header
+  const authHeader = req.headers.get("Authorization");
+  if (!authHeader) {
+    return NextResponse.json(
+      { message: "Authorization token missing" },
+      { status: 401 }
+    );
+  }
+
+  const token = authHeader.split(" ")[1];
   try {
+    // Verify and decode the token
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decodedToken.userId;
+    console.log("User ID:", userId);
+
     await connectToDatabase();
     const body = await req.json();
-    const data = body.formData;
-    // const res = await Task.create({ ...data, createdBy: req.user._id });
-    const res = await Task.create(data);
+    const data = body.formData || body; // Ensure data structure
+
+    const taskData = { ...data, createdBy: userId };
+    console.log("Final Task Data:", taskData);
+
+    // Create task with the userId from the token
+    const res = await Task.create(taskData);
     if (res) {
+      console.log("Task Created:", res);
       return NextResponse.json(
         { message: "Task Created Successfully!" },
         { status: 201 }

@@ -56,13 +56,22 @@ export const TaskForm = ({ data, editMode }: Props) => {
 
   const createTask = async (e: any) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+
     const res = await fetch("/api/Task", {
       method: "POST",
       body: JSON.stringify({ formData }),
       headers: {
         "content-type": "application/json",
+        Authorization: `Bearer ${token}`, // Include the token in the header
       },
     });
+
     if (res) {
       router.refresh();
       router.push("/");
