@@ -22,6 +22,7 @@ function SingUp() {
 
     if (res.ok) {
       router.push("/");
+      router.refresh();
     } else {
       alert("failed to signup");
     }

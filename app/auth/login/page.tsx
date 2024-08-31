@@ -20,6 +20,7 @@ function Login() {
     if (data.token) {
       localStorage.setItem("token", data.token);
       router.push("/");
+      router.refresh();
     } else {
       alert("Invalid Credentials");
     }
