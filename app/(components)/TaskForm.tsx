@@ -229,13 +229,15 @@ export const TaskForm = ({ data, editMode }: Props) => {
           value={formData.status}
           onChange={handleChange}
         >
-          <option value={"Todo"}>Todo</option>
+          <option value={"Todo"}>To Do</option>
 
-          <option value={"Inprogress"}>Inprogress</option>
+          <option value={"Inprogress"}>In Progress</option>
 
-          <option value={"InReviews"}>InReview</option>
+          <option value={"InReviews"}>In Review</option>
 
-          <option value={"Done"}>Done</option>
+          <option value={"On Hold"}>On Hold</option>
+
+          <option value={"Completed"}>Completed</option>
         </select>
 
         <select
