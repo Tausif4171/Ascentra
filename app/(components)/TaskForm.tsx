@@ -17,7 +17,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
     status: "Todo",
     progress: 0,
     priority: 1,
-    category: "Software",
+    department: "Development",
     assignedTo: "",
     // active: Boolean,
   });
@@ -39,7 +39,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
         status: data.status,
         progress: data.progress,
         priority: data.priority,
-        category: data.category,
+        department: data.department,
         assignedTo: data.assignedTo,
       });
     }
@@ -150,18 +150,22 @@ export const TaskForm = ({ data, editMode }: Props) => {
         />
 
         <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
-          Category
+          Department
         </label>
 
         <select
           className=" rounded-lg p-2 mb-2"
-          name="category"
-          value={formData.category}
+          name="department"
+          value={formData.department}
           onChange={handleChange}
         >
-          <option value={"Software"}>Software</option>
+          <option value={"Development"}>Development</option>
 
-          <option value={"Hardware"}>Hardware</option>
+          <option value={"Design"}>Design</option>
+
+          <option value={"QA"}>QA (Quality Assurance)</option>
+
+          <option value={"Sales"}>Sales</option>
         </select>
 
         <label className="text-[#fff] font-medium text-[18px] mb-[6px]">

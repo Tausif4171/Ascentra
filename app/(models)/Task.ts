@@ -7,7 +7,7 @@ const taskSchema = new Schema(
     status: String,
     progress: Number,
     priority: Number,
-    category: String,
+    department: String,
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
