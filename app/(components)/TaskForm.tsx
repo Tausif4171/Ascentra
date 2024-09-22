@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useToast } from "../context/ToastContext"; // Import the useToast hook
 
 type Props = {
   data?: any;
@@ -9,6 +10,7 @@ type Props = {
 
 export const TaskForm = ({ data, editMode }: Props) => {
   const [users, setUsers] = useState([]);
+  const { showToast } = useToast();
   console.log(data, users);
   const router = useRouter();
   const [formData, setFormData] = useState<any>({
@@ -59,6 +61,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
     const token = localStorage.getItem("token");
 
     if (!token) {
+      showToast("No token found", "error");
       console.error("No token found");
       return;
     }
@@ -75,9 +78,9 @@ export const TaskForm = ({ data, editMode }: Props) => {
     if (res) {
       router.refresh();
       router.push("/");
-      return "Successfully created!";
+      showToast("Successfully created!", "success");
     } else {
-      return "Error in creating";
+      showToast("Error in creating task", "error");
     }
   };
 
@@ -93,9 +96,9 @@ export const TaskForm = ({ data, editMode }: Props) => {
     if (res) {
       router.refresh();
       router.push("/");
-      return "Successfully updated!";
+      showToast("Successfully updated!", "success");
     } else {
-      return "Error in updating";
+      showToast("Error in updating task", "error");
     }
   };
 
