@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-import { Toast } from "../(components)/Toast"; // Import the Toast component
+import Toast from "../(components)/Toast";
 
 type ToastContextType = {
   showToast: (message: string, type: "success" | "error" | "warning") => void;
@@ -19,32 +19,36 @@ export const useToast = () => {
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [toastData, setToastData] = useState({
-    message: "",
-    type: "success",
-    show: false,
-  });
+  const [toasts, setToasts] = useState<
+    { id: number; message: string; type: "success" | "error" | "warning" }[]
+  >([]);
 
   const showToast = (
     message: string,
     type: "success" | "error" | "warning"
   ) => {
-    setToastData({ message, type, show: true });
+    const id = Date.now();
+    setToasts([...toasts, { id, message, type }]);
   };
 
-  const handleClose = () => {
-    setToastData((prev) => ({ ...prev, show: false }));
+  const removeToast = (id: number) => {
+    setToasts(toasts.filter((toast) => toast.id !== id));
   };
 
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <Toast
-        message={toastData.message}
-        type={toastData.type}
-        show={toastData.show}
-        onClose={handleClose}
-      />
+      <div className="toast-container fixed bottom-0 right-0 flex flex-col space-y-2">
+        {toasts.map((toast) => (
+          <Toast
+            key={toast.id}
+            id={toast.id}
+            message={toast.message}
+            type={toast.type}
+            onClose={removeToast}
+          />
+        ))}
+      </div>
     </ToastContext.Provider>
   );
 };
