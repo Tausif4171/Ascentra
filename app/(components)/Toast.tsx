@@ -21,9 +21,9 @@ const Toast = ({ message, type, id, onClose }: ToastProps) => {
 
   return (
     <div
-      className={`toast ${type} fixed bottom-4 right-4 p-4 rounded-lg shadow-lg flex items-center justify-between text-white`}
+      className={` bg-white toast ${type} fixed bottom-4 right-4 p-4 rounded-lg shadow-lg flex items-center justify-between text-white`}
     >
-      <span>{message}</span>
+      <span className=" text-[16px] font-medium text-black">{message}</span>
       <button
         className="ml-4 bg-transparent border-none cursor-pointer"
         onClick={() => onClose(id)}
