@@ -21,6 +21,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
     priority: 1,
     department: "Development",
     assignedTo: "",
+    dueDate: "",
     // active: Boolean,
   });
 
@@ -43,6 +44,10 @@ export const TaskForm = ({ data, editMode }: Props) => {
         priority: data.priority,
         department: data.department,
         assignedTo: data.assignedTo,
+        // Format dueDate to "YYYY-MM-DD"
+        dueDate: data.dueDate
+          ? new Date(data.dueDate).toISOString().split("T")[0]
+          : "",
       });
     }
   }, [editMode]);
@@ -62,20 +67,25 @@ export const TaskForm = ({ data, editMode }: Props) => {
 
     if (!token) {
       showToast("No token found", "error");
-      console.error("No token found");
       return;
     }
 
+    // Convert the dueDate from string to a Date object before sending the data
+    const taskData = {
+      ...formData,
+      dueDate: new Date(formData.dueDate), // Convert string to Date object
+    };
+
     const res = await fetch("/api/Task", {
       method: "POST",
-      body: JSON.stringify({ formData }),
+      body: JSON.stringify(taskData),
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer ${token}`, // Include the token in the header
+        Authorization: `Bearer ${token}`,
       },
     });
 
-    if (res) {
+    if (res.ok) {
       router.refresh();
       router.push("/");
       showToast("Successfully created!", "success");
@@ -86,14 +96,24 @@ export const TaskForm = ({ data, editMode }: Props) => {
 
   const updateTask = async (e: any) => {
     e.preventDefault();
+
+    // Convert the dueDate from string to Date object
+    const updatedData = {
+      ...formData,
+      dueDate: new Date(formData.dueDate), // Convert string to Date object
+    };
+    console.log("before", { updatedData });
+
     const res = await fetch(`/api/Task/${data._id}`, {
       method: "PUT",
-      body: JSON.stringify({ formData }),
+      body: JSON.stringify(updatedData),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    if (res) {
+    console.log("after", { updatedData });
+
+    if (res.ok) {
       router.refresh();
       router.push("/");
       showToast("Successfully updated!", "success");
@@ -255,6 +275,18 @@ export const TaskForm = ({ data, editMode }: Props) => {
             </option>
           ))}
         </select>
+
+        {/* Due Date Input */}
+        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
+          Due Date
+        </label>
+        <input
+          className="rounded-lg p-2 mb-2"
+          name="dueDate"
+          type="date"
+          value={formData.dueDate}
+          onChange={handleChange}
+        />
 
         <button
           className=" uppercase text-[18px] w-40 mx-auto px-6 bg-black rounded-md flex justify-center items-center py-3 text-white font-bold"

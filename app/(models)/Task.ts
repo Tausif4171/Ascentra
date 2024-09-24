@@ -17,6 +17,7 @@ const taskSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    dueDate: Date, // This is correct
     // active: Boolean,
   },
   {
