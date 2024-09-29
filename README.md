@@ -24,7 +24,7 @@ Follow these steps to run the project locally:
 
 1. Clone this repository to your local machine.
    ```bash
-   git clone https://github.com/Tausif4171/MakeO.git
+   git clone https://github.com/Tausif4171/Ascentra.git
    
 2. cd project-directory
   
