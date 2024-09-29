@@ -18,7 +18,7 @@ This project was built using the following technologies:
 
 🗄️ MongoDB
 
-🚀 How to Run the Project
+## 🚀 How to Run the Project
 
 Follow these steps to run the project locally:
 
