@@ -6,17 +6,17 @@ Ascentra is a platform designed to help teams manage tasks across different depa
 
 This project was built using the following technologies:
 
-⚛️ NextJS
+  ⚛️ NextJS
 
-💻 TypeScript
+  💻 TypeScript
 
-🌐 JavaScript
+  🌐 JavaScript
 
-🎨 Tailwind CSS
+  🎨 Tailwind CSS
 
-🖥️ NodeJS
+  🖥️ NodeJS
 
-🗄️ MongoDB
+  🗄️ MongoDB
 
 ## 🚀 How to Run the Project
 
