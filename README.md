@@ -1,6 +1,6 @@
 # 🌟 Ascentra
 
-Ascentra is a platform designed to help teams manage tasks across different departments. It enables users to create, update, assign tasks, collaborate with team members, and securely log in. 🚀
+Ascentra is a platform designed to help teams manage tasks across different departments. It enables users to create, update, assign tasks, collaborate with team members, and securely log in.
 
 ## 🛠️ Technologies Used
 
@@ -16,7 +16,7 @@ This project was built using the following technologies:
 
 &nbsp;&nbsp; 🖥️ NodeJS
 
-&nbsp;&nbsp; 🗄️ MongoDB
+&nbsp;&nbsp;&nbsp; 🗄️ MongoDB
 
 ## 🚀 How to Run the Project
 
