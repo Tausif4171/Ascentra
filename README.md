@@ -1,17 +1,27 @@
-# Task Watcher App Building with Next.js 👀
+# Technologies Used
 
-## Getting Started
+This project was built using the following technologies:
+- NextJS
+- Typescript
+- Javascript
+- Tailwind CSS
+- NodeJS
+- MongoDB
 
-First, run the development server:
+## How to Run the Project
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Follow these steps to run the project locally:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone this repository to your local machine.
+   ```bash
+   git clone https://github.com/Tausif4171/MakeO.git
+   
+2. cd project-directory
+  
+3. npm install
+  
+4. npm start
+
+The app will run on http://localhost:3000.
+
+Thanks :)
