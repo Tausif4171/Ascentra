@@ -34,4 +34,4 @@ Follow these steps to run the project locally:
 
 The app will run on http://localhost:3000.
 
-Thanks for checking out the project! 🙌😊
+Thanks!
