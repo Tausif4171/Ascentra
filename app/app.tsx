@@ -73,6 +73,16 @@ export default function App({ children }: any) {
     }
   }, [showLoader]);
 
+  const clearTaskParam = () => {
+    const params = new URLSearchParams(window.location.search);
+    params.delete("task"); // Clear the 'task' param
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?${params}`
+    ); // Update the URL without reloading
+  };
+
   return (
     <div>
       {showLoader ? (
@@ -92,7 +102,10 @@ export default function App({ children }: any) {
                 isOpen={isSidebarOpen} // Control from parent
                 data={ticketData} // Pass the fetched ticket data
                 editMode={editMode} // Pass the edit mode
-                onClose={() => setIsSidebarOpen(false)} // Close function passed down
+                onClose={() => {
+                  setIsSidebarOpen(false); // Close the sidebar
+                  clearTaskParam(); // Clear the task param from URL
+                }} // Close function passed down
               />
             )}
           </div>
