@@ -12,9 +12,9 @@ function Sidebar({ isOpen, onClose, data, editMode }: any) {
       <div className="p-4 h-full flex flex-col">
         <button
           onClick={onClose}
-          className="text-red-500 flex justify-end float-right mb-2"
+          className="absolute top-5 right-5 text-2xl text-gray-700 hover:text-gray-900"
         >
-          Close
+          &times;
         </button>
         {/* Scrollable Content Wrapper */}
         <div
