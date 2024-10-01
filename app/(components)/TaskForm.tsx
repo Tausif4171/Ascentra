@@ -124,7 +124,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
 
   return (
     <div className="flex flex-col justify-center m-10">
-      <h3 className="text-[#fff] font-semibold text-[24px] mb-4">
+      <h3 className="  font-semibold text-[24px] mb-4">
         {editMode ? "Update Task" : "Create Task"}
       </h3>
 
@@ -133,9 +133,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
         method="POST"
         onSubmit={editMode ? updateTask : createTask}
       >
-        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
-          Title
-        </label>
+        <label className="  font-medium text-[18px] mb-[6px]">Title</label>
 
         <input
           className=" rounded-lg p-2 mb-2"
@@ -145,7 +143,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           onChange={handleChange}
         />
 
-        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
+        <label className="  font-medium text-[18px] mb-[6px]">
           Description
         </label>
 
@@ -158,9 +156,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           onChange={handleChange}
         />
 
-        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
-          Progress
-        </label>
+        <label className="  font-medium text-[18px] mb-[6px]">Progress</label>
 
         <input
           className=" rounded-lg p-2 mb-2"
@@ -172,9 +168,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           onChange={handleChange}
         />
 
-        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
-          Department
-        </label>
+        <label className="  font-medium text-[18px] mb-[6px]">Department</label>
 
         <select
           className=" rounded-lg p-2 mb-2"
@@ -191,9 +185,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <option value={"Sales"}>Sales</option>
         </select>
 
-        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
-          Priority
-        </label>
+        <label className="  font-medium text-[18px] mb-[6px]">Priority</label>
 
         <div className="mb-2">
           <input
@@ -242,9 +234,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
           <label>5</label>
         </div>
 
-        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
-          Status
-        </label>
+        <label className="  font-medium text-[18px] mb-[6px]">Status</label>
 
         <select
           className=" rounded-lg p-2 mb-7"
@@ -277,9 +267,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
         </select>
 
         {/* Due Date Input */}
-        <label className="text-[#fff] font-medium text-[18px] mb-[6px]">
-          Due Date
-        </label>
+        <label className="  font-medium text-[18px] mb-[6px]">Due Date</label>
         <input
           className="rounded-lg p-2 mb-2"
           name="dueDate"
