@@ -37,15 +37,15 @@ export const TaskForm = ({ data, editMode }: Props) => {
     fetchUsers();
     if (editMode) {
       setFormData({
-        title: data.title,
-        description: data.description,
-        status: data.status,
-        progress: data.progress,
-        priority: data.priority,
-        department: data.department,
-        assignedTo: data.assignedTo,
+        title: data?.title,
+        description: data?.description,
+        status: data?.status,
+        progress: data?.progress,
+        priority: data?.priority,
+        department: data?.department,
+        assignedTo: data?.assignedTo,
         // Format dueDate to "YYYY-MM-DD"
-        dueDate: data.dueDate
+        dueDate: data?.dueDate
           ? new Date(data.dueDate).toISOString().split("T")[0]
           : "",
       });

@@ -3,11 +3,12 @@ import PriorityDisplay from "./PriorityDisplay";
 import DeleteBlock from "./DeleteBlock";
 import ProgressDisplay from "./ProgressDisplay";
 import StatusDisplay from "./StatusDisplay";
-import Link from "next/link";
+import { useRouter } from "next/navigation"; // Using router for updating the query
 
-function TicketCard({ item, key }: any) {
-  console.log("check", item);
+function TicketCard({ item }: any) {
+  const router = useRouter();
 
+  // Function to format the timestamp
   function format(timestamp: any) {
     const options: any = {
       year: "numeric",
@@ -23,6 +24,13 @@ function TicketCard({ item, key }: any) {
     return formatDateTime;
   }
 
+  // Function to handle ticket click and trigger edit mode by updating the URL params
+  const handleEditTicket = () => {
+    const params = new URLSearchParams(window.location.search);
+    params.set("task", item._id); // Set the task id in the query parameter
+    router.push(`?${params.toString()}`); // Update URL without page refresh
+  };
+
   return (
     <div className=" bg-white rounded-xl h-auto p-4 hover:bg-slate-50 cursor-pointer">
       <div className="flex justify-between">
@@ -30,7 +38,7 @@ function TicketCard({ item, key }: any) {
         <DeleteBlock id={item._id} />
       </div>
 
-      <Link href={`/TicketPage/${item._id}`}>
+      <div onClick={handleEditTicket}>
         <h2 className="mt-2">{item.title}</h2>
 
         <hr className=" h-px text-sky-300 w-full"></hr>
@@ -51,7 +59,7 @@ function TicketCard({ item, key }: any) {
             <StatusDisplay status={item.status} />
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }
