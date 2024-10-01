@@ -14,33 +14,46 @@ export default function App({ children }: any) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const searchParams = useSearchParams();
   const [editMode, setEditMode] = useState(false);
-
   const [ticketData, setTicketData] = useState(null); // To store the ticket data
+  const [loadingData, setLoadingData] = useState(false); // For data loading state
 
   // Function to fetch ticket data based on ID
   const fetchTicketData = async (ticketId: string) => {
-    const res = await fetch(`/api/Task/${ticketId}`);
-    if (res.ok) {
-      const data = await res.json();
-      setTicketData(data.taskData); // Store the fetched ticket data
+    setLoadingData(true); // Start loading
+    try {
+      const res = await fetch(`/api/Task/${ticketId}`);
+      if (res.ok) {
+        const data = await res.json();
+        setTicketData(data.taskData); // Store the fetched ticket data
+      } else {
+        setTicketData(null); // Handle error state
+      }
+    } catch (error) {
+      console.error("Error fetching ticket data:", error);
+      setTicketData(null); // Reset on error
     }
+    setLoadingData(false); // End loading
   };
 
   // Detect URL parameter changes
   useEffect(() => {
-    const taskId = searchParams.get("task"); // Get the 'task' param
+    const taskId = searchParams.get("task"); // Get the 'task' param from the URL
     if (taskId === "new") {
       setIsSidebarOpen(true);
       setEditMode(false); // Open sidebar in create mode
+      setTicketData(null); // Clear ticket data for new task
     } else if (taskId) {
       setIsSidebarOpen(true);
       setEditMode(true); // Open sidebar in edit mode
+      setTicketData(null); // Clear existing data before fetching new data
       fetchTicketData(taskId); // Fetch ticket data for edit mode
     } else {
       setIsSidebarOpen(false); // Close sidebar if no 'task' param
+      setTicketData(null); // Clear ticket data when sidebar is closed
     }
   }, [searchParams]);
 
+  // Loader effect
   useEffect(() => {
     const loaderTime = getLocalStorage(SHOW_LOADER_KEY);
     const now = new Date().getTime();
@@ -60,16 +73,6 @@ export default function App({ children }: any) {
     }
   }, [showLoader]);
 
-  // // Detect query parameter changes and control the sidebar visibility
-  // useEffect(() => {
-  //   const taskParam = searchParams.get("task");
-  //   if (taskParam === "new") {
-  //     setIsSidebarOpen(true); // Open the sidebar if 'task=new' is in the URL
-  //   } else {
-  //     setIsSidebarOpen(false); // Close the sidebar if the param is not present
-  //   }
-  // }, [searchParams]);
-
   return (
     <div>
       {showLoader ? (
@@ -83,11 +86,15 @@ export default function App({ children }: any) {
             <div className="flex-grow overflow-y-auto bg-slate-600">
               {children}
             </div>
-            {/* Render the sidebar based on the state */}
-
-            {/* Render Sidebar based on the state */}
-            {isSidebarOpen && <Sidebar data={ticketData} editMode={editMode} />}
-            {/* Adjust editMode logic */}
+            {/* Render Sidebar only when data is loaded */}
+            {isSidebarOpen && !loadingData && (
+              <Sidebar
+                isOpen={isSidebarOpen} // Control from parent
+                data={ticketData} // Pass the fetched ticket data
+                editMode={editMode} // Pass the edit mode
+                onClose={() => setIsSidebarOpen(false)} // Close function passed down
+              />
+            )}
           </div>
         </ToastProvider>
       )}
