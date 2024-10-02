@@ -38,13 +38,15 @@ export async function PUT(req, { params }) {
     await connectToDatabase();
     const { id } = params;
     const data = await req.json();
-    const taskData = data.formData;
-    const res = await Task.findByIdAndUpdate(id, { ...taskData });
+    const res = await Task.findByIdAndUpdate(id, { ...data });
+
     if (res) {
       return NextResponse.json(
         { message: "Update data successfully!" },
         { status: 200 }
       );
+    } else {
+      return NextResponse.json({ message: "Task not found!" }, { status: 404 });
     }
   } catch (error) {
     console.error("Error updating task:", error);
