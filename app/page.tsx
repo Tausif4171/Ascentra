@@ -39,7 +39,7 @@ export default function Home() {
     if (isLoggedIn) {
       loadTasks();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, tasks]);
 
   if (!isLoggedIn) {
     return <div>Please login to view tasks.</div>;
