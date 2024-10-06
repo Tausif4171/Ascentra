@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "../context/ToastContext";
 
@@ -22,6 +22,15 @@ export const TaskForm = ({ data, editMode }: Props) => {
     assignedTo: "",
     dueDate: "",
   });
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    if (inputRef.current) {
+      inputRef.current.showPicker(); // For modern browsers that support the showPicker method
+      inputRef.current.focus();
+    }
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -244,9 +253,11 @@ export const TaskForm = ({ data, editMode }: Props) => {
         </div>
 
         {/** Due Date Input */}
-        <div>
+        <div onClick={handleClick}>
           <label className="font-medium text-lg mb-2">Due Date</label>
           <input
+            ref={inputRef}
+            id="dueDate"
             className="w-full rounded-lg p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
             name="dueDate"
             type="date"
