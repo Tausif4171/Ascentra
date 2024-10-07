@@ -72,16 +72,34 @@ export default function Home() {
   return (
     <div className="m-10">
       {/* <h3 className="text-[#fff] font-semibold text-[24px] mb-4">Tasks</h3> */}
-      <select
-        className="mb-4 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-        onChange={(e) => setSelectedDepartment(e.target.value)}
-      >
-        <option value="All">All Departments</option>
-        <option value="Development">Development</option>
-        <option value="Design">Design</option>
-        <option value="QA">QA</option>
-        <option value="Sales">Sales</option>
-      </select>
+      <div className="relative w-[182px] mb-4">
+        <select
+          className="w-full rounded-lg p-3 pl-3 pr-10 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 appearance-none"
+          onChange={(e) => setSelectedDepartment(e.target.value)}
+        >
+          <option value="All">All Departments</option>
+          <option value="Development">Development</option>
+          <option value="Design">Design</option>
+          <option value="QA">QA</option>
+          <option value="Sales">Sales</option>
+        </select>
+
+        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <svg
+            className="w-4 h-4 text-gray-400" // Adjust the size and color as needed
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M7 10l5 5 5-5"
+            />
+          </svg>
+        </div>
+      </div>
 
       {["Development", "Design", "QA", "Sales"].map((department) => {
         const departmentTasks = filteredTasks.filter(
