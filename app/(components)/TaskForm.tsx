@@ -178,17 +178,34 @@ export const TaskForm = ({ data, editMode }: Props) => {
         {/** Department Select */}
         <div>
           <label className="font-medium text-lg mb-2">Department</label>
-          <select
-            className="w-full rounded-lg p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-            name="department"
-            value={formData.department}
-            onChange={handleChange}
-          >
-            <option value="Development">Development</option>
-            <option value="Design">Design</option>
-            <option value="QA">QA (Quality Assurance)</option>
-            <option value="Sales">Sales</option>
-          </select>
+          <div className="relative">
+            <select
+              className="w-full rounded-lg p-3 pl-3 pr-10 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 appearance-none"
+              name="department"
+              value={formData.department}
+              onChange={handleChange}
+            >
+              <option value="Development">Development</option>
+              <option value="Design">Design</option>
+              <option value="QA">QA (Quality Assurance)</option>
+              <option value="Sales">Sales</option>
+            </select>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-400" // Adjust the size and color as needed
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 10l5 5 5-5"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
 
         {/** Priority Radio Buttons */}
@@ -220,36 +237,70 @@ export const TaskForm = ({ data, editMode }: Props) => {
         {/** Status Select */}
         <div>
           <label className="font-medium text-lg mb-2">Status</label>
-          <select
-            className="w-full rounded-lg p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-          >
-            <option value="To Do">To Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="In Review">In Review</option>
-            <option value="On Hold">On Hold</option>
-            <option value="Completed">Completed</option>
-          </select>
+          <div className="relative">
+            <select
+              className="w-full rounded-lg p-3 pl-3 pr-10 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 appearance-none"
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+            >
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="In Review">In Review</option>
+              <option value="On Hold">On Hold</option>
+              <option value="Completed">Completed</option>
+            </select>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-400" // Adjust the size and color as needed
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 10l5 5 5-5"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
 
         {/** Assign to Select */}
         <div>
           <label className="font-medium text-lg mb-2">Assign to</label>
-          <select
-            className="w-full rounded-lg p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-            name="assignedTo"
-            value={formData.assignedTo}
-            onChange={handleChange}
-          >
-            <option value="">Select user</option>
-            {users?.map((user: { _id: string; email: string }) => (
-              <option key={user._id} value={user._id}>
-                {user.email}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              className="w-full rounded-lg p-3 pl-3 pr-10 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 appearance-none"
+              name="assignedTo"
+              value={formData.assignedTo}
+              onChange={handleChange}
+            >
+              <option value="">Select user</option>
+              {users?.map((user: { _id: string; email: string }) => (
+                <option key={user._id} value={user._id}>
+                  {user.email}
+                </option>
+              ))}
+            </select>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-400" // Adjust the size and color as needed
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 10l5 5 5-5"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
 
         {/** Due Date Input */}
