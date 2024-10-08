@@ -2,6 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "../context/ToastContext";
+import { useDispatch } from "react-redux";
+import { setShowFetch } from "../store";
+import { useSelector } from "react-redux";
 
 type Props = {
   data?: any;
@@ -22,6 +25,9 @@ export const TaskForm = ({ data, editMode }: Props) => {
     assignedTo: "",
     dueDate: "",
   });
+
+  const dispatch = useDispatch();
+  const showFetch = useSelector((state: any) => state.showFetch.showFetch); // Access the showFetch state
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -90,6 +96,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
 
     if (res.ok) {
       router.refresh();
+      dispatch(setShowFetch(!showFetch));
       router.push("/");
       showToast("Successfully created!", "success");
     } else {

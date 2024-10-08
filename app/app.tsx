@@ -5,6 +5,9 @@ import { setLocalStorage, getLocalStorage } from "./utils/localStorage"; // Adju
 import Navbar from "./(components)/Navbar";
 import Sidebar from "./(components)/Sidebar"; // Your Sidebar component
 import { ToastProvider } from "./context/ToastContext"; // Adjust the import path as necessary
+import { Provider } from "react-redux";
+
+import store from "./store/index";
 
 const SHOW_LOADER_KEY = "showLoader";
 const THIRTY_MINUTES = 30 * 60 * 1000; // 30 minutes in milliseconds
@@ -90,26 +93,28 @@ export default function App({ children }: any) {
           <div className="text-white text-xl">Loading...</div>
         </div>
       ) : (
-        <ToastProvider>
-          <div className="flex flex-col h-screen max-h-screen">
-            <Navbar />
-            <div className="flex-grow overflow-y-auto bg-slate-600">
-              {children}
+        <Provider store={store}>
+          <ToastProvider>
+            <div className="flex flex-col h-screen max-h-screen">
+              <Navbar />
+              <div className="flex-grow overflow-y-auto bg-slate-600">
+                {children}
+              </div>
+              {/* Render Sidebar only when data is loaded */}
+              {isSidebarOpen && !loadingData && (
+                <Sidebar
+                  isOpen={isSidebarOpen} // Control from parent
+                  data={ticketData} // Pass the fetched ticket data
+                  editMode={editMode} // Pass the edit mode
+                  onClose={() => {
+                    setIsSidebarOpen(false); // Close the sidebar
+                    clearTaskParam(); // Clear the task param from URL
+                  }} // Close function passed down
+                />
+              )}
             </div>
-            {/* Render Sidebar only when data is loaded */}
-            {isSidebarOpen && !loadingData && (
-              <Sidebar
-                isOpen={isSidebarOpen} // Control from parent
-                data={ticketData} // Pass the fetched ticket data
-                editMode={editMode} // Pass the edit mode
-                onClose={() => {
-                  setIsSidebarOpen(false); // Close the sidebar
-                  clearTaskParam(); // Clear the task param from URL
-                }} // Close function passed down
-              />
-            )}
-          </div>
-        </ToastProvider>
+          </ToastProvider>
+        </Provider>
       )}
     </div>
   );

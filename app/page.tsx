@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import TicketCard from "./(components)/TicketCard";
 import TaskSchema from "./interface/Task";
 import Icons from "./assets/svgs";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const fetchTasks = async () => {
   try {
@@ -24,6 +26,16 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [selectedDepartment, setSelectedDepartment] = useState("All");
   const { BotIcon } = Icons;
+  const dispatch = useDispatch();
+  const showFetch = useSelector((state: any) => state.showFetch.showFetch); // Access the showFetch state
+  console.log({ showFetch });
+
+  const loadTasks = async () => {
+    setLoading(true);
+    const data = await fetchTasks();
+    setTasks(data.task);
+    setLoading(false);
+  };
 
   useEffect(() => {
     const checkAuth = () => {
@@ -31,18 +43,15 @@ export default function Home() {
       setIsLoggedIn(!!token);
     };
 
-    const loadTasks = async () => {
-      setLoading(true);
-      const data = await fetchTasks();
-      setTasks(data.task);
-      setLoading(false);
-    };
-
     checkAuth();
     if (isLoggedIn) {
       loadTasks();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, showFetch]);
+
+  // useEffect(() => {
+  //   loadTasks();
+  // }, [showFetch]);
 
   if (!isLoggedIn) {
     return (
