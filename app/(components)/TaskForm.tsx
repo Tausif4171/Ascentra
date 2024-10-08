@@ -2,9 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "../context/ToastContext";
-import { useDispatch } from "react-redux";
 import { setShowFetch } from "../store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 type Props = {
   data?: any;
@@ -122,6 +121,7 @@ export const TaskForm = ({ data, editMode }: Props) => {
 
     if (res.ok) {
       router.refresh();
+      dispatch(setShowFetch(!showFetch));
       router.push("/");
       showToast("Successfully updated!", "success");
     } else {
