@@ -1,8 +1,8 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import TicketCard from "./(components)/TicketCard";
 import TaskSchema from "./interface/Task";
-import BotIcon from "./assets/svgs";
 import Icons from "./assets/svgs";
 
 const fetchTasks = async () => {
@@ -56,10 +56,14 @@ export default function Home() {
     );
   }
 
-  const filteredTasks =
+  const departmentList = ["Development", "Design", "QA", "Sales"];
+
+  const filteredDepartments =
     selectedDepartment === "All"
-      ? tasks
-      : tasks.filter((task) => task.department === selectedDepartment);
+      ? departmentList
+      : departmentList.filter(
+          (department) => department === selectedDepartment
+        );
 
   if (loading) {
     return (
@@ -71,7 +75,6 @@ export default function Home() {
 
   return (
     <div className="m-10">
-      {/* <h3 className="text-[#fff] font-semibold text-[24px] mb-4">Tasks</h3> */}
       <div className="relative w-[182px] mb-4">
         <select
           className="w-full rounded-lg p-3 pl-3 pr-10 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 appearance-none"
@@ -86,7 +89,7 @@ export default function Home() {
 
         <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
           <svg
-            className="w-4 h-4 text-gray-400" // Adjust the size and color as needed
+            className="w-4 h-4 text-gray-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -101,8 +104,8 @@ export default function Home() {
         </div>
       </div>
 
-      {["Development", "Design", "QA", "Sales"].map((department) => {
-        const departmentTasks = filteredTasks.filter(
+      {filteredDepartments.map((department) => {
+        const departmentTasks = tasks.filter(
           (task) => task.department === department
         );
 
