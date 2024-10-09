@@ -14,6 +14,8 @@ This project is being built using the following technologies:
 
 &nbsp;&nbsp;&nbsp; 🎨 Tailwind CSS
 
+&nbsp;&nbsp;&nbsp; 🔁 Redux
+
 &nbsp;&nbsp;&nbsp; 🖥️ NodeJS
 
 &nbsp;&nbsp;&nbsp; 🗄️ MongoDB
