@@ -18,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <App children={children} />
+        {/* Remove the children prop and render children directly */}
+        <App>{children}</App>
       </body>
     </html>
   );
